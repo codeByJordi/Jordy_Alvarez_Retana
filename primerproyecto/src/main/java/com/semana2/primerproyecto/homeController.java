@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller //muy importante
 public class homeController {
 
-    @GetMapping("/")
-    public String home(Model model){
-        
-        model.addAttribute("Jordy", "estudiante"); //nombre debe calzar con el del htlm
-        return "home"; 
+    @GetMapping("/")               //para adjuntar variables
+    public String home(Model model /*,@RequestParam String nombre1*/){
+        model.addAttribute("nombre", "jordi");  //'nombre' es el th:text="${nombre}" en el html
+        return "home"; //nombre debe calzar con el del html
     }
+
 
 }
