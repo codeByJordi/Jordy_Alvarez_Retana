@@ -2,9 +2,7 @@
 
 Aplicación Spring Boot + Thymeleaf + Bootstrap, lista para que durante la **Clase 4** se le agregue persistencia con **MySQL, JPA e Hibernate**.
 
----
-
-## ✅ Lo que ya tiene
+---## ✅ Lo que ya tiene
 
 - Spring Boot 3.3.5 + Java 25
 - Thymeleaf con `spring.thymeleaf.cache=false` (reload sin reiniciar)
