@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.0.6</version>
-        <relativePath/>
+        <version>4.0.6</version>
+        <relativePath />
     </parent>
 
     <groupId>com.ufide</groupId>
@@ -41,18 +41,17 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-	
-	<dependency>
-		   <groupId>org.springframework.boot</groupId>
-		   <artifactId>spring-boot-starter-thymeleaf-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <!-- ============================================================== -->
         <!-- CLASE 4: descomentar estas dependencias durante el laboratorio -->
         <!-- ============================================================== -->
-        <!--PARA EL ENTITY TENGA AL JPA-->
-       
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -63,7 +62,35 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!--PARA EL ENTITY TENGA AL JPA-->
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.4.10.Final</version>
+        </dependency>
+
+        <!-- ============================================================== -->
+        <!-- CLASE 6: descomentar estas dependencias durante el laboratorio -->
+        <!-- ============================================================== -->
+
+        <!-- Descomentar cuando anadimos validaciones al Curso (PARTE A.4) -->
+        
+
+
+        <!-- Descomentar cuando agregamos subida de imagenes con Firebase (PARTE E) -->
+      
+        <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-admin</artifactId>
+            <version>9.3.0</version>
+        </dependency>
+
+      	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
 
         <!-- Tests -->
         <dependency>

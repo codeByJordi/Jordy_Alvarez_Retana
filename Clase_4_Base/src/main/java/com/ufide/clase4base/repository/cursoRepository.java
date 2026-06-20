@@ -1,12 +1,8 @@
 package com.ufide.clase4base.repository;
 
-
-import com.ufide.clase4base.entity.*;
-
-
 import org.springframework.data.jpa.repository.JpaRepository;
+import com.ufide.clase4base.entity.Curso;
 
-
-public interface cursoRepository extends JpaRepository<Curso, Long>{ //curso es el curso.java de entity
-    
+public interface CursoRepository
+        extends JpaRepository<Curso, Long> {
 }

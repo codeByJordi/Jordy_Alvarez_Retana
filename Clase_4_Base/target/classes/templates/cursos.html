@@ -23,7 +23,35 @@
                 <span class="badge bg-primary" th:text="${cursos.size()}">0</span>
             </p>
         </div>
+
+        <!-- CLASE 6 - PARTE A.1: descomentar el boton para abrir el formulario de nuevo curso -->
+        
+        <a class="btn btn-primary" th:href="@{/cursos/nuevo}">
+            <i class="bi bi-plus-circle me-1"></i> Nuevo curso
+        </a>
+        
     </div>
+
+    <!-- CLASE 6 - PARTE D: descomentar el alert para mostrar el flash de exito (ok) -->
+    <!--
+    <div class="alert alert-success alert-dismissible fade show" role="alert"
+         th:if="${ok}">
+        <i class="bi bi-check-circle me-2"></i>
+        <span th:text="${ok}">Operacion realizada</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+    -->
+
+    <!-- CLASE 6 - PARTE D (opcional): descomentar el alert para mostrar mensajes de error -->
+    <!--
+    <div class="alert alert-danger alert-dismissible fade show" role="alert"
+         th:if="${error}">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        <span th:text="${error}">Hubo un error</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+    -->
+
 
     <!--
       Iteracion con th:each.
@@ -56,11 +84,33 @@
                             <i class="bi bi-person-circle me-1"></i>
                             <span th:text="${c.profesor}">Profesor</span>
                         </small>
-                        <a class="btn btn-outline-primary btn-sm"
-                           th:href="@{/cursos/{id}(id=${c.id})}">
-                            Ver detalle
-                            <i class="bi bi-arrow-right ms-1"></i>
-                        </a>
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-outline-primary"
+                               th:href="@{/cursos/{id}(id=${c.id})}">
+                                Ver
+                            </a>
+
+                            
+                            <!-- CLASE 6 - PARTE B.1: descomentar el boton Editar -->
+                            
+                            <a class="btn btn-outline-warning"
+                               th:href="@{/cursos/{id}/editar(id=${c.id})}"> <!--OJO, C ES EL OBJETO, Y AQUI OBTENEMOS EL ID-->
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            
+
+                            <!-- CLASE 6 - PARTE C.2: descomentar el boton Eliminar que dispara el modal -->
+                            <!--
+                            <button type="button"
+                                    class="btn btn-outline-danger btn-eliminar"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalEliminar"
+                                    th:data-id="${c.id}"
+                                    th:data-nombre="${c.nombre}">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                            -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,6 +128,88 @@
 
 <footer th:replace="~{fragments/header :: footer}"></footer>
 
+<!-- CLASE 6 - PARTE C.3: descomentar el modal de confirmacion de borrado.
+     Se activa con el boton "Eliminar" de cada card (PARTE C.2). -->
+<!--
+<div class="modal fade" id="modalEliminar" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">
+                    <i class="bi bi-exclamation-triangle me-2"></i>Eliminar curso
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <p>Estas seguro que queres eliminar el curso
+                    <strong id="nombreCursoEliminar">...</strong>?
+                </p>
+                <p class="text-muted small mb-0">Esta accion no se puede deshacer.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <form id="formEliminar" method="post" th:action="@{/cursos/0/eliminar}">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash me-1"></i> Si, eliminar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+<!-- CLASE 6 - PARTE D: descomentar el toast (alternativa al alert).
+     Se muestra automaticamente cuando llega el flash "ok". -->
+<!--
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toastOk" class="toast align-items-center text-bg-success border-0"
+         role="alert" aria-live="assertive" aria-atomic="true"
+         th:if="${ok}">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-check-circle me-2"></i>
+                <span th:text="${ok}">Operacion realizada</span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast" aria-label="Cerrar"></button>
+        </div>
+    </div>
+</div>
+-->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- CLASE 6 - PARTE C.3: descomentar este script para que el modal reciba
+     el ID y nombre del curso al hacer click en Eliminar. -->
+<!--
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modalEliminar');
+    if (modal) {
+      modal.addEventListener('show.bs.modal', (event) => {
+        const boton = event.relatedTarget;
+        const id = boton.getAttribute('data-id');
+        const nombre = boton.getAttribute('data-nombre');
+        document.getElementById('nombreCursoEliminar').textContent = nombre;
+        document.getElementById('formEliminar').action = '/cursos/' + id + '/eliminar';
+      });
+    }
+  });
+</script>
+-->
+
+<!-- CLASE 6 - PARTE D: descomentar para auto-mostrar el toast al cargar la pagina. -->
+<!--
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toastEl = document.getElementById('toastOk');
+    if (toastEl) {
+      new bootstrap.Toast(toastEl, { delay: 3500 }).show();
+    }
+  });
+</script>
+-->
+
 </body>
 </html>
