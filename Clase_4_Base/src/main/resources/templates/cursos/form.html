@@ -36,7 +36,7 @@ Crea el archivo dentro de un sub-paquete `templates/cursos/` (carpeta nueva).
     -->
     <form method="post"
           th:object="${curso}"
-          th:action="${curso.id == null}? @{/cursos}: @{/cursos/{id}(id=${curso.id})}"> <!--Buscar que significa-->
+          th:action="${curso.id == null}? @{/cursos}: @{/cursos/{id}(id=${curso.id})}"> <!--SI EL CURSO.ID ES NULL, SE CREA, SINO SE VA AL GET DE EDITAR-->
 
         <!-- ID oculto, necesario para que JPA distinga INSERT vs UPDATE -->
         <input type="hidden" th:field="*{id}">

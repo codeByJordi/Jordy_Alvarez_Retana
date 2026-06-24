@@ -90,7 +90,7 @@
                                 Ver
                             </a>
 
-                            
+
                             <!-- CLASE 6 - PARTE B.1: descomentar el boton Editar -->
                             
                             <a class="btn btn-outline-warning"
@@ -100,16 +100,16 @@
                             
 
                             <!-- CLASE 6 - PARTE C.2: descomentar el boton Eliminar que dispara el modal -->
-                            <!--
+                            
                             <button type="button"
                                     class="btn btn-outline-danger btn-eliminar"
                                     data-bs-toggle="modal"
                                     data-bs-target="#modalEliminar"
-                                    th:data-id="${c.id}"
+                                    th:data-id="${c.id}" 
                                     th:data-nombre="${c.nombre}">
-                                <i class="bi bi-trash"></i>
+                                <i class="bi bi-trash"></i> <!--obtiene el id-->
                             </button>
-                            -->
+                            
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <form id="formEliminar" method="post" th:action="@{/cursos/0/eliminar}">
+                <form id="formEliminar" method="post" th:action="@{/cursos/0/eliminar}"> 0 SE REFIERE A VALOR, Y ESO MANDA AL POST
                     <button type="submit" class="btn btn-danger">
                         <i class="bi bi-trash me-1"></i> Si, eliminar
                     </button>

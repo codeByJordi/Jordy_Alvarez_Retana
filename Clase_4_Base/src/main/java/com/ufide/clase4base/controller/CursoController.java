@@ -169,14 +169,14 @@ public class CursoController {
 
         // PASO C.1 - descomentar para procesar el borrado.
         // El boton + modal en la vista los agregas en los pasos C.2 y C.3.
-        /*
+        
         @PostMapping("/{id}/eliminar")
         public String eliminar(@PathVariable Long id, RedirectAttributes ra) {
                 cursoService.eliminar(id);
                 ra.addFlashAttribute("ok", "Curso eliminado correctamente");
                 return "redirect:/cursos";
         }
-        */
+        
 
         // =====================================================================
         // CLASE 6 - PARTE E (BONUS): subir imagen del curso a Firebase Storage
