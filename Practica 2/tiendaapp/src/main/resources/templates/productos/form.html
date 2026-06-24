@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+	<title>Form</title>
+</head>
+<body>
+	<form th:object="${producto}" th:action="${producto.id == null} ? @{/productos} : @{/productos/{id} (id=${producto.id})}" method="post">
+        <input type="hidden" th:field="*{id}">
+        
+           <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text"
+                   class="form-control"
+                   th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid'"
+                   th:field="*{nombre}"
+                   placeholder="Nombre">
+            <div class="invalid-feedback" th:errors="*{nombre}">Error</div>
+        </div>
+
+        
+        <div class="mb-3">
+            <label class="form-label">Descripcion</label>
+            <textarea class="form-control"
+                      rows="3"
+                      th:classappend="${#fields.hasErrors('descripcion')} ? 'is-invalid'"
+                      th:field="*{descripcion}"></textarea>
+            <div class="invalid-feedback" th:errors="*{descripcion}">Error</div>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Precio</label>
+                <input type="number"
+                       class="form-control"
+                      
+                       th:classappend="${#fields.hasErrors('precio')} ? 'is-invalid'"
+                       th:field="*{precio}">  <!---min="1" max="8"-->
+                <div class="invalid-feedback" th:errors="*{precio}">Error</div>
+            </div>
+
+            
+            <div class="col-md-8 mb-3">
+                <label class="form-label">Stock</label>
+                <input type="number"
+                       class="form-control"
+                       th:classappend="${#fields.hasErrors('stock')} ? 'is-invalid'"
+                       th:field="*{stock}">
+                <div class="invalid-feedback" th:errors="*{stock}">Error</div>
+            </div>
+        </div>
+        <input type="submit">
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
