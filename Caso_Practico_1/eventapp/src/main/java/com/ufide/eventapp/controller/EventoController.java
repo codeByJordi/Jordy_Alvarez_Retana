@@ -102,8 +102,9 @@ public class EventoController {
 
 //    //Para eliminar
     @PostMapping("/{id}/eliminar")
-    public String eliminar(@PathVariable Long id) {
+    public String eliminar(@PathVariable Long id, RedirectAttributes ra) {
         service.eliminar(id);
+        ra.addFlashAttribute("ok", "Evento eliminado correctamente");
         return "redirect:/eventos";
     }
 }

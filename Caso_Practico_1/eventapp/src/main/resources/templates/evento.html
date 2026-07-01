@@ -48,7 +48,7 @@
                 <dd class="col-sm-8" th:text="${evento.organizador}">Organizador</dd>
 
                 <dt class="col-sm-4">Cupos</dt>
-                <dd class="col-sm-8">
+                <dd class="col-sm-8" th:class="${evento.cuposVendidos == evento.cupoMaximo} ? 'text-bg-danger p-3' : 'text-bg-success p-3'">
                     <span th:text="${evento.cuposVendidos}">0</span>
                     /
                     <span th:text="${evento.cupoMaximo}">0</span>
