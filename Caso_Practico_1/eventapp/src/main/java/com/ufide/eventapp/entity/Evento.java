@@ -70,7 +70,7 @@ public class Evento {
 
     /** Precio de la entrada (0 si es gratis). */
     @Max(value = 10000, message = "Precio maximo 100000")
-    @Min(value = 0, message = "Precio minimo 500")
+    @Min(value = 0)
     private double precio;
 
     public Evento() {}
