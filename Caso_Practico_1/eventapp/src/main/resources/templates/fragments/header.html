@@ -16,10 +16,19 @@
                     <a class="nav-link" th:href="@{/eventos}">Eventos</a>
                 </li>
             </ul>
-            <span class="navbar-text text-white-50 small">
-                SC-403 - Caso Practico 1
+
+            <span class="navbar-text text-white-40 small">
+                  SC-403 - Caso Practico 1
             </span>
         </div>
+        <form class="d-flex" th:action="@{/eventos/buscar}" method="get">
+            <input class="form-control me-2" type="search" name="buscar"
+                   placeholder="Buscar evento...">
+            <button class="btn btn-outline-light" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+
     </div>
 </nav>
 

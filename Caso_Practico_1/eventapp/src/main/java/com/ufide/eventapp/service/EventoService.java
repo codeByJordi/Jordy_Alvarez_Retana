@@ -23,6 +23,11 @@ public class EventoService {
     @Autowired
     private EventoRepository repo;
 
+
+    public List<Evento> buscarPorNombreContainingIgnoreCase(String texto) {
+        return repo.findByNombreContainingIgnoreCase(texto);
+    }
+
     public List<Evento> listar() {
         return repo.findAll();
     }

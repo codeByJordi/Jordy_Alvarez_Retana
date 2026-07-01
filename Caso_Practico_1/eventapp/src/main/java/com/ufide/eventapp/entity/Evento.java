@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.*;
 
 /**
  * Entidad Evento - representa un evento publico (concierto, taller, charla...).
@@ -28,6 +29,8 @@ public class Evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Campo no puede estar vacio")
+    @Size(min = 1, max = 50, message = "Minimo un caracter y maximo 50")
     @Column(nullable = false, length = 120)
     private String nombre;
 
@@ -35,26 +38,33 @@ public class Evento {
     private String descripcion;
 
     /** Fecha del evento (sin hora). */
+    @Future(message = "Fecha ya paso")
     @Column(nullable = false)
     private LocalDate fecha;
 
+    @NotBlank(message = "Debe agregar un lugar")
     @Column(length = 100)
     private String lugar;
 
     /** Categoria libre: "Musica", "Conferencia", "Deporte", "Taller", etc. */
+    @NotBlank(message = "Debe agregar una categoria")
     @Column(length = 50)
     private String categoria;
 
+    @NotBlank(message = "Debe agregar un organizador")
     @Column(length = 80)
     private String organizador;
 
     /** Cupo total disponible. */
+    @Min(value = 1, message = "Cupo minimo 1")
     private int cupoMaximo;
 
     /** Tickets ya vendidos. */
     private int cuposVendidos;
 
     /** Precio de la entrada (0 si es gratis). */
+    @Max(value = 100000, message = "Precio maximo 100000")
+    @Min(value = 500, message = "Precio minimo 500")
     private double precio;
 
     public Evento() {}
