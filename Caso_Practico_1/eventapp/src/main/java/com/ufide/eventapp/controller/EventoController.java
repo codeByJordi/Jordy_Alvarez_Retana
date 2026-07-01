@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import com.ufide.eventapp.entity.Evento;
 import com.ufide.eventapp.service.EventoService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 /**
  * Controlador de eventos - estado base del Caso Practico 1.
@@ -63,18 +66,17 @@ public class EventoController {
     //Para crea un nuevo evento
     @GetMapping("/nuevo")
     public String nuevo(Model model) {
-        List<String> categorias = new ArrayList<>();
         model.addAttribute("evento", new Evento());
         return "eventos/form";
     }
     @PostMapping
-    public String guardar(@Valid @ModelAttribute Evento evento, BindingResult result) {
+    public String guardar(@Valid @ModelAttribute("evento") Evento evento, BindingResult result, RedirectAttributes ra) {
         if (result.hasErrors()) {
             return "eventos/form";
         }
-        evento.setCuposVendidos(0);
         service.guardar(evento);
-        return "redirect:/eventos/";
+        ra.addFlashAttribute("ok", "Evento guardado correctamente");
+        return "redirect:/eventos";
     }
 //
 //    //Para editar eventos
@@ -85,19 +87,20 @@ public class EventoController {
         return "eventos/form";
     }
     @PostMapping("/{id}")
-    public String actualizar(@Valid @ModelAttribute Evento evento, BindingResult result, @PathVariable Long id) {
+    public String actualizar(@Valid @ModelAttribute("evento") Evento evento, BindingResult result, @PathVariable Long id, RedirectAttributes ra) {
         if (result.hasErrors()) {
             return "eventos/form";
         }
         evento.setId(id);
         service.guardar(evento);
-        return "redirect:/eventos/";
+        ra.addFlashAttribute("ok", "Evento guardado correctamente");
+        return "redirect:/eventos";
     }
 
 //    //Para eliminar
     @PostMapping("/{id}/eliminar")
     public String eliminar(@PathVariable Long id) {
         service.eliminar(id);
-        return "redirect:/";
+        return "redirect:/eventos";
     }
 }

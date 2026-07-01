@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Entidad Evento - representa un evento publico (concierto, taller, charla...).
@@ -34,11 +35,14 @@ public class Evento {
     @Column(nullable = false, length = 120)
     private String nombre;
 
+    @Size(min = 0, max = 500, message = "Maximo 500")
     @Column(length = 500)
     private String descripcion;
 
     /** Fecha del evento (sin hora). */
-    @Future(message = "Fecha ya paso")
+    @NotNull(message = "Fecha es obligatoria")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Future(message = "Fecha debe ser a futuro")
     @Column(nullable = false)
     private LocalDate fecha;
 
@@ -60,11 +64,13 @@ public class Evento {
     private int cupoMaximo;
 
     /** Tickets ya vendidos. */
+    @Max(value = 10000)
+    @Min(value = 0)
     private int cuposVendidos;
 
     /** Precio de la entrada (0 si es gratis). */
-    @Max(value = 100000, message = "Precio maximo 100000")
-    @Min(value = 500, message = "Precio minimo 500")
+    @Max(value = 10000, message = "Precio maximo 100000")
+    @Min(value = 0, message = "Precio minimo 500")
     private double precio;
 
     public Evento() {}

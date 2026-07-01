@@ -38,6 +38,7 @@
             </div>
 
 
+
             <div class="mb-3">
                 <label class="form-label">Descripcion</label>
                 <textarea class="form-control"
@@ -46,7 +47,15 @@
                           th:field="*{descripcion}"></textarea>
                 <div class="invalid-feedback" th:errors="*{descripcion}">Error</div>
             </div>
-
+            <div class="mb-3">
+                <label class="form-label">Precio</label>
+                <input type="text"
+                       class="form-control"
+                       th:classappend="${#fields.hasErrors('precio')} ? 'is-invalid'"
+                       th:field="*{precio}"
+                >
+                <div class="invalid-feedback" th:errors="*{precio}">Error</div>
+            </div>
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Fecha</label>
@@ -93,6 +102,16 @@
                            th:classappend="${#fields.hasErrors('cupoMaximo')} ? 'is-invalid'"
                            th:field="*{cupoMaximo}">
                     <div class="invalid-feedback" th:errors="*{cupoMaximo}">Error</div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Cupos vendidos</label>
+                    <input type="number"
+                           class="form-control"
+
+                           min="0"
+                           th:classappend="${#fields.hasErrors('cuposVendidos')} ? 'is-invalid'"
+                           th:field="*{cuposVendidos}">
+                    <div class="invalid-feedback" th:errors="*{cuposVendidos}">Error</div>
                 </div>
             </div>
 
