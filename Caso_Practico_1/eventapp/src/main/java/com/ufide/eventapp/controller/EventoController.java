@@ -55,9 +55,12 @@ public class EventoController {
     // TODO Caso Practico 1: agregar aca los endpoints del CRUD y el GET con parametro.
     //Para ver categorias
     @GetMapping("/buscar")
-    public String buscar(Model model, @RequestParam(required = false) String texto) {
-        if(texto != null && !texto.isBlank()) {
-            model.addAttribute("eventos", service.buscarPorNombreContainingIgnoreCase(texto));
+    public String buscar(Model model, @RequestParam(required = false) String buscar) {
+        if(buscar != null && !buscar.isBlank()) {
+            model.addAttribute("eventos", service.buscarPorNombreContainingIgnoreCase(buscar));
+        }
+        else {
+            model.addAttribute("eventos", service.listar());
         }
         return "eventos";
     }
