@@ -28,4 +28,8 @@ public class CursoService {
     public void eliminar(Long id) {
         repo.deleteById(id);
     }
+
+    public List<Curso> findAllByProfesor(){
+        return repo.findAllByProfesor();
+    }
 }

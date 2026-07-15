@@ -3,6 +3,7 @@ package com.ufide.clase4base.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ufide.clase4base.service.ProfesorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,6 +65,8 @@ public class CursoController {
 
         @Autowired
         private CursoService cursoService;
+        @Autowired
+        private ProfesorService profesorService;
 
         // CLASE 6 - PARTE E (bonus): descomentar para inyectar el servicio de Firebase
         // @Autowired
@@ -71,7 +74,7 @@ public class CursoController {
 
         @GetMapping
         public String listar(Model modelo) {
-                modelo.addAttribute("cursos", cursoService.listar());
+                modelo.addAttribute("cursos", cursoService.findAllByProfesor());
                 return "cursos";
         }
 
@@ -98,6 +101,7 @@ public class CursoController {
         @GetMapping("/nuevo")
         public String mostrarFormNuevo(Model modelo) {
                 modelo.addAttribute("curso", new Curso());
+                modelo.addAttribute("profesores", profesorService.findAllProfesor());
                 return "cursos/form"; //form esta dento de la carpeta cursos en el resources
         }
         
@@ -141,6 +145,7 @@ public class CursoController {
         public String mostrarFormEditar(@PathVariable Long id, Model modelo) {
                 Curso curso = cursoService.buscarPorId(id).orElseThrow(); //BUSCA EL ID
                 modelo.addAttribute("curso", curso); //LLENA EL FORM
+                modelo.addAttribute("profesores", profesorService.findAllProfesor());
                 return "cursos/form";
         }
         

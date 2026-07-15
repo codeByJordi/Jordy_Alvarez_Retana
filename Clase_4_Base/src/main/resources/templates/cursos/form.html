@@ -83,6 +83,20 @@ Crea el archivo dentro de un sub-paquete `templates/cursos/` (carpeta nueva).
                        th:field="*{profesor}">
                 <div class="invalid-feedback" th:errors="*{profesor}">Error</div>
             </div>
+
+            <div class="col-md-8 mb-3">
+
+                <Select class="form-select" th:field="*{profesor}">
+                    <option th:each="p : ${profesores}"
+                            th:value="${p.id}"
+                            th:text="${p.nombre}"
+                            th:selected="${curso.profesor != null and p.id==curso.profesor.id}">
+                    </option>
+                </Select>
+                <div class="invalid-feedback" th:errors="*{profesor}">Error</div>
+            </div>
+      
+
         </div>
 
         <!--

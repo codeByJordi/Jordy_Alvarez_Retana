@@ -1,15 +1,7 @@
 package com.ufide.clase4base.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 /**
  * Modelo de datos del Curso.
@@ -48,23 +40,30 @@ public class Curso {
     private int creditos;
 
     // CLASE 6 - PARTE A.4: descomentar @NotBlank y @Size
-    @NotBlank(message = "El profesor es obligatorio")
-    @Size(max = 80)
-    private String profesor;
+//    @NotBlank(message = "El profesor es obligatorio")
+//    @Size(max = 80)
+//    private String profesor;
 
     // CLASE 6 - PARTE E (bonus Firebase): descomentar el campo imagenUrl
     // private String imagenUrl;
+
+    @NotNull()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "profesor_id")
+    Profesor profesor;
+
+
 
     /** Constructor vacio - obligatorio cuando esta clase pase a ser @Entity. */
     public Curso() {
     }
 
-    public Curso(Long id, String nombre, String descripcion, int creditos, String profesor) {
+    public Curso(Long id, String nombre, String descripcion, int creditos, Profesor profesor) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.creditos = creditos;
-        this.profesor = profesor;
+       this.profesor = profesor;
     }
 
     // Getters y setters
@@ -101,11 +100,11 @@ public class Curso {
         this.creditos = creditos;
     }
 
-    public String getProfesor() {
+    public Profesor getProfesor() {
         return profesor;
     }
 
-    public void setProfesor(String profesor) {
+    public void setProfesor(Profesor profesor) {
         this.profesor = profesor;
     }
 
