@@ -1,6 +1,4 @@
-CLASE 10 - PASO A.3: crear `UsuarioRepository.java` en este paquete (`repository/`) copiando el bloque de abajo.
 
-```java
 package com.ufide.cursosapp.repository;
 
 import java.util.Optional;
@@ -15,4 +13,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     // Lo usa CustomUserDetailsService para buscar al usuario que intenta loguearse.
     Optional<Usuario> findByUsername(String username);
 }
-```
+
