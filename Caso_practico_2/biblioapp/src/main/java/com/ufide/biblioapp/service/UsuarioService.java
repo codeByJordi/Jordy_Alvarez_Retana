@@ -34,6 +34,10 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.findByUsername(username).orElse(null);
     }
 
+    public List<Usuario> buscarTodos() {
+        return usuarioRepository.findAll();
+    }
+
     // ==========================================================
     // CASO PRACTICO 2 - BONUS (CRUD completo de Usuarios):
     // Si vas a implementar el bonus, agrega aca los metodos

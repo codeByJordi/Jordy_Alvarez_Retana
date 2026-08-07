@@ -31,12 +31,19 @@ public class LibroService {
     // Cuando implementes el registro de prestamos en PrestamoService,
     // vas a necesitar descontar/sumar copiasDisponibles aca. Un
     // metodo util podria ser:
-    //
-    //   public void descontarCopia(Libro libro) {
-    //       libro.setCopiasDisponibles(libro.getCopiasDisponibles() - 1);
-    //       libroRepository.save(libro);
-    //   }
-    //
+    public void descontarCopia(Libro libro) {
+        libro.setCopiasDisponibles(libro.getCopiasDisponibles() - 1);
+        libroRepository.save(libro);
+    }
+    public void agregarCopia(Libro libro) {
+        libro.setCopiasDisponibles(libro.getCopiasDisponibles() + 1);
+        libroRepository.save(libro);
+    }
+
+    public void eliminar(Long id) {
+        libroRepository.deleteById(id);
+    }
+
     // (y el equivalente para devolver una copia)
     // ==========================================================
 }

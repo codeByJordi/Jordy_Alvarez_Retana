@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head('Detalle del libro')}"></head>
+<body>
+<div th:replace="~{fragments/header :: nav}"></div>
+<div class="container">
+    <div th:if="${prestamo == null}" class="alert alert-danger">Prestamo no encontrado.</div>
+    <div th:if="${prestamo != null}" class="card">
+        <div class="card-body">
+            <h2 th:text="${prestamo.id}">Id Libro</h2>
+            <h5 class="text-muted" th:text="${prestamo.libro.titulo}">Titulo</h5>
+            <p><strong>ISBN:</strong> <span th:text="${prestamo.libro.isbn}"></span></p>
+            <p><strong>Categoria:</strong> <span th:text="${prestamo.libro.categoria}"></span></p>
+            <span class="card-subtitle mb-2 text-muted" th:text="${prestamo.fechaPrestamo}">Fecha de Prestamo</span>
+            <p class="card-text">
+                <span class="badge bg-secondary" th:text="${prestamo.fechaLimite}">Fecha de Limite</span>
+                <span class="badge bg-secondary" th:text="${prestamo.FechaDevolucion}">Fecha de Devolucion</span>
+
+
+            <a href="/p/Prestamos" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

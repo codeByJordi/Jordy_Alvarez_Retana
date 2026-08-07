@@ -23,4 +23,8 @@ public class HomeController {
     // en SecurityConfig con .exceptionHandling(ex -> ex
     //     .accessDeniedPage("/403"))
     // ==========================================================
+    @GetMapping("/403")
+    public String accesoDenegado() {
+        return "403";
+    }
 }
