@@ -15,4 +15,7 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Long> {
 
     @Query("SELECT u FROM Prestamo u JOIN FETCH u.libro")
     Optional<Prestamo> findConLibro(Long id);
+
+    @Query("Select p From Prestamo p Where p.fechaLimite > CURRENT_DATE ")
+    List<Prestamo> prestamosAtrasados();
 }

@@ -7,6 +7,7 @@ import com.ufide.biblioapp.service.PrestamoService;
 import com.ufide.biblioapp.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,6 +46,7 @@ public class PrestamoController {
         return "Prestamo-detalle";
     }
 
+    @PreAuthorize("hasRole('BIBLIOTECARIO')")
     @GetMapping("/nuevo/{id}")
     public String mostrarFormNuevo(Model modelo, @PathVariable Long id) {
         Prestamo prestamo = new Prestamo();
@@ -56,6 +58,7 @@ public class PrestamoController {
         return "prestamos/form";
     }
 
+    @PreAuthorize("hasRole('BIBLIOTECARIO')")
     @PostMapping("/nuevo")
     public String guardar(@Valid @ModelAttribute("prestamo") Prestamo prestamo,
                           BindingResult result, Model modelo) {

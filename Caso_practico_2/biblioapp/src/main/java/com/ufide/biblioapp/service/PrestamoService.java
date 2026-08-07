@@ -28,6 +28,10 @@ public class PrestamoService {
         return prestamoRepository.findConLibro(id);
     }
 
+    public List<Prestamo> atrasados(){
+        return prestamoRepository.findAll();
+    }
+
     public List<Prestamo> findAllByUsuario(){
         return prestamoRepository.findAllConUsuario();
     }

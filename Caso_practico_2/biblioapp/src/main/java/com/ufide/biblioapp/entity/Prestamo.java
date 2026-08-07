@@ -37,7 +37,6 @@ public class Prestamo {
     private LocalDate fechaLimite;
 
     @Column
-    @Future(message = "Cuando se realiza la devolución")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate fechaDevolucion;
 
