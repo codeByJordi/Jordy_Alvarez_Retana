@@ -1,6 +1,4 @@
-CLASE 10 - PASO A.2: crear `Usuario.java` en este paquete (`entity/`) copiando el bloque de abajo.
 
-```java
 package com.ufide.cursosapp.entity;
 
 import jakarta.persistence.Column;
@@ -59,6 +57,4 @@ public class Usuario {
     public String getRol() { return rol; }
     public void setRol(String rol) { this.rol = rol; }
 }
-```
 
-Una vez creado el archivo, borra este `package-info.md` (o dejalo, no rompe la compilacion porque no es `.java`).

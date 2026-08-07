@@ -1,10 +1,9 @@
-CLASE 10 - PASO C.1: crear el paquete `config/` (si no existe) y adentro `SecurityConfig.java`, copiando el bloque de abajo.
 
-```java
 package com.ufide.cursosapp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,24 +27,22 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                 // Publico: inicio, login, estilos e imagenes
-                .requestMatchers("/", "/login", "/css/**", "/img/**").permitAll()
+                .requestMatchers("/", "/login", "/css/**", "/img/**").permitAll() //ojo, se usa los de resources
                 // Todo lo demas (incluido /cursos/**) requiere estar logueado.
                 // La restriccion POR ROL se agrega en S11 con @PreAuthorize.
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
-                .loginPage("/login")
+                .loginPage("/login") //se usa en el post de entrar, esto en lugar en el loginprocess
                 .defaultSuccessUrl("/cursos", true)
                 .permitAll()
+
             )
             .logout(logout -> logout
-                .logoutUrl("/logout")
+                .logoutUrl("/logout") //se usa en el post de boton salir
                 .logoutSuccessUrl("/login?logout")
-                .permitAll()
-            );
+                .permitAll());
+//            ).httpBasic(Customizer.withDefaults()); ->hace que no se tenga que loguear
         return http.build();
     }
 }
-```
-
-PASO C.2: fijate que `.anyRequest().authenticated()` es lo que obliga a loguearse para entrar a `/cursos`. Probar comentando esa linea (dejando solo `permitAll()` en todo) para ver la diferencia.

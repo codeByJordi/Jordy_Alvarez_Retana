@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="tiendaapp" />
+        <module name="tiendaapp (1)" />
+        <module name="cursosapp (2)" />
+        <module name="cursosapp (1)" />
+        <module name="clase4base" />
+        <module name="tiendaapp (2)" />
+        <module name="clase5" />
+        <module name="eventapp" />
+        <module name="primerproyecto" />
+        <module name="cursosapp" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="clase4base" options="-parameters" />
+      <module name="clase5" options="-parameters" />
+      <module name="cursosapp" options="-parameters" />
+      <module name="cursosapp (1)" options="-parameters" />
+      <module name="cursosapp (2)" options="-parameters" />
+      <module name="eventapp" options="-parameters" />
+      <module name="primerproyecto" options="-parameters" />
+      <module name="tiendaapp" options="-parameters" />
+      <module name="tiendaapp (1)" options="-parameters" />
+      <module name="tiendaapp (2)" options="-parameters" />
+    </option>
+  </component>
+</project>

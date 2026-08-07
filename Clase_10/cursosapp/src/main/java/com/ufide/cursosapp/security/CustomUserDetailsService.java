@@ -1,6 +1,4 @@
-CLASE 10 - PASO B.1: crear el paquete `security/` (si no existe) y adentro `CustomUserDetailsService.java`, copiando el bloque de abajo.
 
-```java
 package com.ufide.cursosapp.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +34,4 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .build();
     }
 }
-```
 
-Nota: este paquete no existia antes de esta clase. Requiere que ya exista `entity.Usuario` (PASO A.2) y `repository.UsuarioRepository` (PASO A.3).
