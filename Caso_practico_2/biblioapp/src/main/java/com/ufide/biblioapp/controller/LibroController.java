@@ -2,6 +2,7 @@ package com.ufide.biblioapp.controller;
 
 import com.ufide.biblioapp.entity.Libro;
 import com.ufide.biblioapp.service.LibroService;
+import com.ufide.biblioapp.service.PrestamoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,6 +20,8 @@ public class LibroController {
 
     @Autowired
     private LibroService libroService;
+    @Autowired
+    private PrestamoService prestamoService;
 
     @GetMapping("/libros")
     public String listar(Model model) {
@@ -73,6 +76,8 @@ public class LibroController {
     @PreAuthorize("hasRole('BIBLIOTECARIO')")
     @PostMapping("/libros/eliminar/{id}")
     public String eliminar(@PathVariable Long id) {
+        Libro libro = libroService.buscarPorId(id).orElse(null);
+        prestamoService.deleteLibro(libro);
         libroService.eliminar(id);
         return "redirect:/libros";
     }

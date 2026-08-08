@@ -95,5 +95,11 @@ public class PrestamoController {
         return "redirect:/p/prestamos/" + id;
     }
 
+    @PostMapping("/prestamos/{id}/eliminar")
+    public String eliminar(@PathVariable Long id) {
+        prestamoService.delete(id);
+        return "redirect:/p/prestamos";
+    }
+
 
 }

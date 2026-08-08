@@ -44,6 +44,8 @@ public class Libro {
     // salvo que decidas navegar tambien Libro -> lista de Prestamo
     // con un @OneToMany(mappedBy = "libro") — eso es opcional.
     // ==========================================================
+//    @OneToMany(mappedBy = "libro")
+//    private Prestamo prestamo;
 
     public Libro() {
     }
