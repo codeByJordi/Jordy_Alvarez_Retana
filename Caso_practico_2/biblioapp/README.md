@@ -38,11 +38,11 @@ Ver la sección "Requisitos obligatorios" de `caso_practico_2.md`. Resumen:
 
 ## Credenciales de ejemplo
 
-| Usuario | Password | Rol |
-|---|---|---|
+| Usuario | Password | 123Rol        |
+|---|---|---------------|
 | `bibliotecaria1` | `password123` | BIBLIOTECARIO |
-| `lector1` | `password123` | LECTOR |
-| `lector2` | `password123` | LECTOR |
+| `lector1` | `password123` | LECTOR        |
+| `lector2` | `password123` | LECTOR        |
 
 ## Problemas comunes
 

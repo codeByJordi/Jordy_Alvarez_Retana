@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class LibroController {
@@ -50,14 +51,27 @@ public class LibroController {
     }
 
     @PreAuthorize("hasRole('BIBLIOTECARIO')")
-    @GetMapping("/libros/{id}/editar")
+    @GetMapping("/libros/editar/{id}")
     public String mostrarEditor(@PathVariable Long id, Model model) {
         model.addAttribute("libro", libroService.buscarPorId(id).orElse(null));
         return "libros/form";
     }
+    @PreAuthorize("hasRole('BIBLIOTECARIO')")
+    @PostMapping("/{id}")
+    public String actualizar(@PathVariable Long id,
+                             @Valid @ModelAttribute("libro") Libro libro,
+                             BindingResult result
+                             ) {
+        if (result.hasErrors()) {
+            return "libros/form";
+        }
+        libro.setId(id);
+        libroService.guardar(libro);
+        return "redirect:/libros";
+    }
 
     @PreAuthorize("hasRole('BIBLIOTECARIO')")
-    @PostMapping("/libros/{id}/eliminar")
+    @PostMapping("/libros/eliminar/{id}")
     public String eliminar(@PathVariable Long id) {
         libroService.eliminar(id);
         return "redirect:/libros";

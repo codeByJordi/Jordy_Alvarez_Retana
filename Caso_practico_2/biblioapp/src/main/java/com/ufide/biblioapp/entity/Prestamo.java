@@ -31,7 +31,7 @@ public class Prestamo {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate fechaPrestamo;
 
-    @NotNull
+    
     @Column
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate fechaLimite;

@@ -2,17 +2,22 @@ package com.ufide.biblioapp.controller;
 
 import com.ufide.biblioapp.entity.Libro;
 import com.ufide.biblioapp.entity.Prestamo;
+import com.ufide.biblioapp.entity.Usuario;
 import com.ufide.biblioapp.service.LibroService;
 import com.ufide.biblioapp.service.PrestamoService;
 import com.ufide.biblioapp.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/p")
@@ -34,13 +39,20 @@ public class PrestamoController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/Prestamos")
-    public String listar(Model model) {
-        model.addAttribute("prestamos", prestamoService.findAllByUsuario());
-        return "Prestamos";
+    @GetMapping("/prestamos")
+    public String listar(Model model,  Authentication authentication) {
+        Usuario usuario = usuarioService.buscarPorUsername(authentication.getName());
+        if (usuario.getRol().equals("BIBLIOTECARIO")) {
+            model.addAttribute("prestamos", prestamoService.findAllByUsuario());
+            model.addAttribute("atrasados", prestamoService.atrasados());
+        }
+        else {
+            model.addAttribute("prestamos", prestamoService.findByusuario(usuario));
+        }
+         return "Prestamos";
     }
 
-    @GetMapping("/Prestamos/{id}")
+    @GetMapping("/prestamos/{id}")
     public String detalle(@PathVariable Long id, Model model) {
         model.addAttribute("prestamo", prestamoService.findConLibro(id).orElse(null));
         return "Prestamo-detalle";
@@ -59,17 +71,29 @@ public class PrestamoController {
     }
 
     @PreAuthorize("hasRole('BIBLIOTECARIO')")
-    @PostMapping("/nuevo")
+    @PostMapping("/nuevo/post")
     public String guardar(@Valid @ModelAttribute("prestamo") Prestamo prestamo,
                           BindingResult result, Model modelo) {
         if (result.hasErrors()) {
             modelo.addAttribute("usuarios", usuarioService.buscarTodos());
+            modelo.addAttribute("libro", prestamo.getLibro()); //para que se mantenga y no lanze error
             return "prestamos/form";
         }
+        libroService.descontarCopia(prestamo.getLibro());
+        prestamo.setFechaLimite(prestamo.getFechaPrestamo().plusDays(14));
         prestamoService.save(prestamo);
-        return "redirect:/Prestamos";
+        return "redirect:/p/prestamos";
     }
 
+    @PreAuthorize("hasRole('BIBLIOTECARIO')")
+    @PostMapping("/prestamos/{id}/devolucion")
+    public String devolucion(@PathVariable Long id) {
+        Prestamo prestamo = prestamoService.buscarPrestamo(id).orElse(null);
+        prestamo.setFechaDevolucion(LocalDate.now());
+        prestamoService.save(prestamo);
+        libroService.agregarCopia(prestamo.getLibro());
+        return "redirect:/p/prestamos/" + id;
+    }
 
 
 }

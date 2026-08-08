@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,15 @@ public class PrestamoService {
     }
 
     public List<Prestamo> atrasados(){
-        return prestamoRepository.findAll();
+        return prestamoRepository.prestamosAtrasados();
+    }
+
+    public List<Prestamo> findByusuario(Usuario usuario){
+        return prestamoRepository.findByUsuario(usuario);
+    }
+
+    public Optional<Prestamo> buscarPrestamo(Long id){
+        return prestamoRepository.findById(id);
     }
 
     public List<Prestamo> findAllByUsuario(){
@@ -39,6 +48,5 @@ public class PrestamoService {
     public Prestamo save(Prestamo prestamo){
         return prestamoRepository.save(prestamo);
     }
-
 
 }

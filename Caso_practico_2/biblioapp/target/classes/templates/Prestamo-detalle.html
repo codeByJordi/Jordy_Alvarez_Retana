@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{fragments/header :: head('Detalle del libro')}"></head>
 <body>
 <div th:replace="~{fragments/header :: nav}"></div>
@@ -11,13 +11,21 @@
             <h5 class="text-muted" th:text="${prestamo.libro.titulo}">Titulo</h5>
             <p><strong>ISBN:</strong> <span th:text="${prestamo.libro.isbn}"></span></p>
             <p><strong>Categoria:</strong> <span th:text="${prestamo.libro.categoria}"></span></p>
+            <p><strong>Prestado a:</strong> <span th:text="${prestamo.usuario.nombreCompleto}"></span></p>
+
             <span class="card-subtitle mb-2 text-muted" th:text="${prestamo.fechaPrestamo}">Fecha de Prestamo</span>
             <p class="card-text">
                 <span class="badge bg-secondary" th:text="${prestamo.fechaLimite}">Fecha de Limite</span>
-                <span class="badge bg-secondary" th:text="${prestamo.FechaDevolucion}">Fecha de Devolucion</span>
+                <span class="badge bg-secondary" th:text="${prestamo.fechaDevolucion}">Fecha de Devolucion</span>
+
+            <form sec:authorize="hasRole('BIBLIOTECARIO')" th:if="${prestamo.fechaDevolucion == null}"
+                  th:action="@{/p/prestamos/{id}/devolucion(id=${prestamo.id})}"
+                  method="post" class="d-inline">
+                <button type="submit" class="btn btn-success">Marcar como devuelta</button>
+            </form>
 
 
-            <a href="/p/Prestamos" class="btn btn-secondary">Volver</a>
+            <a href="/p/prestamos" class="btn btn-secondary">Volver</a>
         </div>
     </div>
 </div>
