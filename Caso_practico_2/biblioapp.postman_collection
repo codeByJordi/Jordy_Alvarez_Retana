@@ -1,0 +1,235 @@
+{
+  "info": {
+    "_postman_id": "1d5004de-a358-49b2-87c4-6b234c2839fa",
+    "name": "postman_collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55256848"
+  },
+  "item": [
+    {
+      "name": "GET api/libros",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\r\n        \"autor\": \"Antoine de Saint-Exupery\",\r\n        \"categoria\": \"Infantil\",\r\n        \"copiasDisponibles\": 4,\r\n        \"copiasTotales\": 4,\r\n        \"id\": 5,\r\n        \"isbn\": \"978-0156012195\",\r\n        \"titulo\": \"El principito\"\r\n    },\r\n    {\r\n        \"autor\": \"Joshua Bloch\",\r\n        \"categoria\": \"Tecnico\",\r\n        \"copiasDisponibles\": 3,\r\n        \"copiasTotales\": 3,\r\n        \"id\": 6,\r\n        \"isbn\": \"978-0134685991\",\r\n        \"titulo\": \"Effective Java\"\r\n    },\r\n    {\r\n        \"autor\": \"George Orwell\",\r\n        \"categoria\": \"Ficcion\",\r\n        \"copiasDisponibles\": 4,\r\n        \"copiasTotales\": 4,\r\n        \"id\": 7,\r\n        \"isbn\": \"978-0451524935\",\r\n        \"titulo\": \"1984\"\r\n    },\r\n    {\r\n        \"autor\": \"Yuval Noah Harari\",\r\n        \"categoria\": \"Ensayo\",\r\n        \"copiasDisponibles\": 2,\r\n        \"copiasTotales\": 2,\r\n        \"id\": 8,\r\n        \"isbn\": \"978-0062316097\",\r\n        \"titulo\": \"Sapiens\"\r\n    },\r\n    {\r\n        \"autor\": \"Erich Gamma et al.\",\r\n        \"categoria\": \"Tecnico\",\r\n        \"copiasDisponibles\": 2,\r\n        \"copiasTotales\": 2,\r\n        \"id\": 9,\r\n        \"isbn\": \"978-0201633610\",\r\n        \"titulo\": \"Design Patterns\"\r\n    },\r\n    {\r\n        \"autor\": \"Carlos Ruiz Zafon\",\r\n        \"categoria\": \"Ficcion\",\r\n        \"copiasDisponibles\": 3,\r\n        \"copiasTotales\": 3,\r\n        \"id\": 10,\r\n        \"isbn\": \"978-8408043645\",\r\n        \"titulo\": \"La sombra del viento\"\r\n    },\r\n    {\r\n        \"autor\": \"Cormen, Leiserson, Rivest, Stein\",\r\n        \"categoria\": \"Tecnico\",\r\n        \"copiasDisponibles\": 2,\r\n        \"copiasTotales\": 2,\r\n        \"id\": 11,\r\n        \"isbn\": \"978-0262033848\",\r\n        \"titulo\": \"Introduction to Algorithms\"\r\n    },\r\n    {\r\n        \"autor\": \"Julio Cortazar\",\r\n        \"categoria\": \"Ficcion\",\r\n        \"copiasDisponibles\": 2,\r\n        \"copiasTotales\": 2,\r\n        \"id\": 12,\r\n        \"isbn\": \"978-8437604572\",\r\n        \"titulo\": \"Rayuela\"\r\n    },\r\n    {\r\n        \"autor\": \"Craig Walls\",\r\n        \"categoria\": \"Tecnico\",\r\n        \"copiasDisponibles\": 3,\r\n        \"copiasTotales\": 3,\r\n        \"id\": 13,\r\n        \"isbn\": \"978-1617294945\",\r\n        \"titulo\": \"Spring in Action\"\r\n    },\r\n    {\r\n        \"autor\": \"Stephen Hawking\",\r\n        \"categoria\": \"Ensayo\",\r\n        \"copiasDisponibles\": 2,\r\n        \"copiasTotales\": 2,\r\n        \"id\": 14,\r\n        \"isbn\": \"978-0553380163\",\r\n        \"titulo\": \"Breve historia del tiempo\"\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/libros",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "libros"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET id caso 200",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n        \"autor\": \"Antoine de Saint-Exupery\",\r\n        \"categoria\": \"Infantil\",\r\n        \"copiasDisponibles\": 4,\r\n        \"copiasTotales\": 4,\r\n        \"id\": 5,\r\n        \"isbn\": \"978-0156012195\",\r\n        \"titulo\": \"El principito\"\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/libros/13",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "libros",
+            "13"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST api/libros caso 201",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "96F9E7FD8DF3CED370DE960056884E29",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n        \"autor\": \"Brandon Sanderson\",\r\n        \"categoria\": \"Juvenil\",\r\n        \"copiasDisponibles\": 4,\r\n        \"copiasTotales\": 4,\r\n        \"isbn\": \"578-0156012568\",\r\n        \"titulo\": \"Skyward\"\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/libros",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "libros"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET id caso 404",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/libros/20",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "libros",
+            "20"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST api/libros caso 403",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "103E4D8008D96BD871C3BDCCCF8A6517",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n        \"autor\": \"Brandon Sanderson\",\r\n        \"categoria\": \"Juvenil\",\r\n        \"copiasDisponibles\": 4,\r\n        \"copiasTotales\": 4,\r\n        \"isbn\": \"578-015012568\",\r\n        \"titulo\": \"Skyward\"\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/libros",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "libros"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /api/prestamos/atrasados",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"libro\": {\r\n\"autor\": \"Antoine de Saint-Exupery\",\r\n\"categoria\": \"Infantil\",\r\n\"copiasDisponibles\": 3,\r\n\"copiasTotales\": 4,\r\n\"hibernateLazyInitializer\": {},\r\n\"id\": 5,\r\n\"isbn\": \"978-0156012195\",\r\n\"titulo\": \"El principito\"\r\n},\r\n\"usuario\": {\r\n\"email\": \"lector@gmail.com\",\r\n\"hibernateLazyInitializer\": {},\r\n\"id\": 4,\r\n\"nombreCompleto\": \"lector jordi\",\r\n\"password\": \"$2a$10$AUjyhwixu8AxSeLWgCu0ZuxqzOAfoXt9SDle5oWKuvuRPQFAgPF1C\",\r\n\"rol\": \"LECTOR\",\r\n\"username\": \"lector\"\r\n},\r\n\"fechaPrestamo\": \"2026-06-15\",\r\n\"fechaLimite\": \"2026-06-29\",\r\n\"fechaDevolucion\": null,\r\n\"id\": 11\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/prestamos/atrasados",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "prestamos",
+            "atrasados"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "crear cookies",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "lector",
+              "type": "text",
+              "uuid": "931428c9-b0e1-479a-b7c2-47e161c67e73"
+            },
+            {
+              "key": "password",
+              "value": "password123",
+              "type": "text",
+              "uuid": "2f2fe98d-9eeb-45fe-a2e6-d04eb45df9af"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
