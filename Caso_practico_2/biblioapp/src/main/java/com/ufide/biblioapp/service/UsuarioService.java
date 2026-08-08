@@ -9,16 +9,22 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UsuarioService implements UserDetailsService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -37,6 +43,10 @@ public class UsuarioService implements UserDetailsService {
 
     public Usuario buscarPorUsername(String username) {
         return usuarioRepository.findByUsername(username).orElse(null);
+    }
+
+    public Optional<Usuario> findByEmail(String email) {
+        return usuarioRepository.findByEmail(email);
     }
 
     public List<Usuario> buscarTodos() {
@@ -58,4 +68,22 @@ public class UsuarioService implements UserDetailsService {
                     "Rol invalido: " + rol + ". Debe ser uno de: " + Arrays.toString(Rol.values()));
         }
     }
+
+    public String crearToken(Usuario usuario) {
+        String token = UUID.randomUUID().toString();
+        usuario.setResetToken(token);
+        usuario.setTokenExpiration(LocalDateTime.now().plusMinutes(30));
+        usuarioRepository.save(usuario);
+        return token;
+    }
+    public Optional<Usuario> findByResetToken(String token) {
+        return usuarioRepository.findByResetToken(token).filter(u -> u.getTokenExpiration().isAfter(LocalDateTime.now()) && u.getResetToken() != null);
+    }
+    public void restablecerContra(Usuario usuario, String contra) {
+        usuario.setPassword(passwordEncoder.encode(contra));
+        usuario.setTokenExpiration(null);
+        usuario.setResetToken(null);
+        usuarioRepository.save(usuario);
+    }
+
 }
