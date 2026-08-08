@@ -76,7 +76,7 @@ public class PrestamoController {
                           BindingResult result, Model modelo) {
         if (result.hasErrors()) {
             modelo.addAttribute("usuarios", usuarioService.buscarTodos());
-            modelo.addAttribute("libro", prestamo.getLibro()); //para que se mantenga y no lanze error
+            modelo.addAttribute("libro", prestamo.getLibro()); //para que se mantengan y no lanze error
             return "prestamos/form";
         }
         libroService.descontarCopia(prestamo.getLibro());
@@ -94,7 +94,7 @@ public class PrestamoController {
         libroService.agregarCopia(prestamo.getLibro());
         return "redirect:/p/prestamos/" + id;
     }
-    
+
     @PreAuthorize("hasRole('BIBLIOTECARIO')")
     @PostMapping("/prestamos/{id}/eliminar")
     public String eliminar(@PathVariable Long id) {
