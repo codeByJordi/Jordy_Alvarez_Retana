@@ -27,7 +27,7 @@ public class Prestamo {
 
     @NotNull
     @Column
-//    @FutureOrPresent(message = "Debe ser dia que se realiza el prestamo")
+    @FutureOrPresent(message = "Debe ser dia que se realiza el prestamo")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate fechaPrestamo;
 

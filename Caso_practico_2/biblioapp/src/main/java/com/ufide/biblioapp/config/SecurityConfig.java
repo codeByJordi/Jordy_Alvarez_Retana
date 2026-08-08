@@ -35,7 +35,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
+        http.csrf(csrf -> csrf.ignoringRequestMatchers("/api/**", "/login"))
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/login", "/403", "/css/**", "/js/**").permitAll()
                     .requestMatchers("/libros", "/libros/*").permitAll()
