@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{fragments/header :: head('Catalogo')}"></head>
 <body>
 <div th:replace="~{fragments/header :: nav}"></div>
 
 
-<div th:if="${atrasados != null and not #lists.isEmpty(atrasados)}" class="alert alert-danger">
+<div th:if="${atrasados != null}" class="alert alert-danger">
   <h5 class="alert-heading">Prestamos atrasados</h5>
   <ul class="mb-0">
     <li th:each="prestamo : ${atrasados}">
-    <span th:text="${prestamo.usuario.nombreCompleto}"> </span>
-    <span th:text="${prestamo.libro.titulo}"> </span>
-    <span th:text="${prestamo.fechaLimite}"> </span>
+    <span th:text="${prestamo.usuario.nombreCompleto} + ' | '"></span>
+    <span th:text="${prestamo.libro.titulo}  + ' | '"> </span>
+    <span th:text="${prestamo.fechaLimite} + ' | '"> </span>
     </li>
   </ul>
 </div>
@@ -29,6 +29,11 @@
 <!--          <p class="card-text">-->
 <!--            <span class="badge bg-secondary" th:text="${prestamo.fechaLimite}">Fecha de Limite</span>-->
 <!--            <span class="badge bg-secondary" th:text="${prestamo.FechaDevolucion}">Fecha de Devolucion</span>-->
+
+          <form sec:authorize="hasRole('BIBLIOTECARIO')" th:action="@{/p/prestamos/{id}/eliminar (id=${prestamo.id})}" method="post" class="d-inline">
+            <button type="submit" class="btn btn-outline-danger btn-sm"
+                    onclick="return confirm('Eliminar este Prestamo?');">Eliminar</button>
+          </form>
 
           <a th:href="@{'/p/prestamos/' + ${prestamo.id}}" class="btn btn-outline-primary btn-sm">Ver detalle</a>
         </div>
