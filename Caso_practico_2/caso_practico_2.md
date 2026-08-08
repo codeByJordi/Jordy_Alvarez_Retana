@@ -34,28 +34,28 @@ Este caso cierra el temario del curso: cubre asociaciones JPA (S9), seguridad y 
 
 ## Lo que tenés que entregar
 
-### 1. Implementación funcional
+~~### 1. Implementación funcional~~
 
 Debe cumplir todos los **requisitos obligatorios** (ver siguiente sección).
 
-### 2. Código fuente subido al repositorio personal
+~~### 2. Código fuente subido al repositorio personal~~
 
 En tu repo personal del curso, en una carpeta `Caso_Practico_2/biblioapp/`.
 
-### 3. Capturas de pantalla (carpeta `Caso_Practico_2/evidencia/`)
+~~### 3. Capturas de pantalla (carpeta `Caso_Practico_2/evidencia/`)~~
 
-Mínimo:
+Mínimo: 
 
-- `01-catalogo.png` — catálogo de libros con disponibilidad visible.
-- `02-prestamo.png` — formulario o pantalla de registrar un préstamo (rol bibliotecario).
-- `03-403.png` — un lector intentando acceder a una función de bibliotecario y viendo la página de acceso denegado.
-- `04-postman-login.png` — request de login en Postman devolviendo el token o la sesión.
-- `05-postman-api.png` — request a la API de libros en Postman con la respuesta JSON visible.
-- `06-atrasados.png` — resultado de la consulta JPQL de préstamos atrasados (Requisito 5.3).
+~~- `01-catalogo.png` — catálogo de libros con disponibilidad visible.~~
+~~- `02-prestamo.png` — formulario o pantalla de registrar un préstamo (rol bibliotecario).~~
+~~- `03-403.png` — un lector intentando acceder a una función de bibliotecario y viendo la página de acceso denegado.~~
+~~- `04-postman-login.png` — request de login en Postman devolviendo el token o la sesión.~~
+~~- `05-postman-api.png` — request a la API de libros en Postman con la respuesta JSON visible.~~
+~~- `06-atrasados.png` — resultado de la consulta JPQL de préstamos atrasados (Requisito 5.3).~~ 
 
-### 4. Colección de Postman (`Caso_Practico_2/biblioapp.postman_collection.json`)
+~~### 4. Colección de Postman (`Caso_Practico_2/biblioapp.postman_collection.json`)~~
 
-Con al menos las requests usadas para las capturas 04 y 05.
+~~Con al menos las requests usadas para las capturas 04 y 05.~~
 
 ### 5. README de lógica (`Caso_Practico_2/SOLUCION.md`)
 
