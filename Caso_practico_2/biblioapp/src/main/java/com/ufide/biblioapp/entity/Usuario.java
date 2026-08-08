@@ -3,6 +3,8 @@ package com.ufide.biblioapp.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -22,6 +24,8 @@ public class Usuario {
     private String nombreCompleto;
 
     private String email;
+    private String resetToken;
+    private LocalDateTime tokenExpiration;
 
     // ==========================================================
     // CASO PRACTICO 2 - REQUISITO 3:
@@ -55,4 +59,20 @@ public class Usuario {
 
     public String getRol() { return rol; }
     public void setRol(String rol) { this.rol = rol; }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    public LocalDateTime getTokenExpiration() {
+        return tokenExpiration;
+    }
+
+    public void setTokenExpiration(LocalDateTime tokenExpiration) {
+        this.tokenExpiration = tokenExpiration;
+    }
 }

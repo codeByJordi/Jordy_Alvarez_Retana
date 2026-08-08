@@ -38,7 +38,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.ignoringRequestMatchers("/api/**", "/login"))
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/login", "/403", "/css/**", "/js/**").permitAll()
-                    .requestMatchers("/libros", "/libros/*").permitAll()
+                    .requestMatchers("/libros", "/libros/*", "/restablecer", "/restablecer/proceso", "/restablecer-password").permitAll()
                     .requestMatchers("/api/libros", "/api/libros/**").permitAll()
                     .anyRequest().authenticated()
             )

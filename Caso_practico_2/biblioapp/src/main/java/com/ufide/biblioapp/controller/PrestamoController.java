@@ -60,7 +60,7 @@ public class PrestamoController {
 
     @PreAuthorize("hasRole('BIBLIOTECARIO')")
     @GetMapping("/nuevo/{id}")
-    public String mostrarFormNuevo(Model modelo, @PathVariable Long id) {
+    public String mostrarCrearPrestamo(Model modelo, @PathVariable Long id) {
         Prestamo prestamo = new Prestamo();
         Libro libro = libroService.buscarPorId(id).orElse(null);
         prestamo.setLibro(libro);
@@ -94,7 +94,8 @@ public class PrestamoController {
         libroService.agregarCopia(prestamo.getLibro());
         return "redirect:/p/prestamos/" + id;
     }
-
+    
+    @PreAuthorize("hasRole('BIBLIOTECARIO')")
     @PostMapping("/prestamos/{id}/eliminar")
     public String eliminar(@PathVariable Long id) {
         prestamoService.delete(id);
