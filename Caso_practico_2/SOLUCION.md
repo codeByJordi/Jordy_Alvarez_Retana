@@ -129,3 +129,5 @@ Esto es para mostrar una lista de los usuarios son un select option del html.
             return "prestamos/form";
         }
 Si ocurre un error en el post, nos devuelve al form, de ahí me salia un error por falta del libro, entonces, usando model el error no sucede ya los datos del libro de mantiene.
+
+Otro punto a anotar es que al intentar iniciar la app, la password no coincide con los usuarios ya creados, por ende, implementé la interface de CommandLineRunner en el main, esto hace que se ejecute codigo, por medio de un metodo heredado, en la terminal. Y con if (usuarioRepository.count() == 0 && !usuarioRepository.findByUsername("biblotecario1").isPresent() && !usuarioRepository.findByUsername("lector").isPresent()) se crean los usuarios la primera vez que se inicia la app.
