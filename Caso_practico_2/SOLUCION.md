@@ -1,3 +1,5 @@
+La app crea bibliotecaria1 y lector con el commandliner, para tener el cuenta los usuarios que se crean en la base de datos, ya que los que traia en un inicio, no funcionaban y las contrasenas no eran las correspondientes.
+
 - Cómo modelaste la relación `Prestamo → Libro` y por qué.
 
     @NotNull(message = "No puede ser null")
