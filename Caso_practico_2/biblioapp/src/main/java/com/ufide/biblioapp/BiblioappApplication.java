@@ -22,7 +22,7 @@ public class BiblioappApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (usuarioRepository.count() == 0 && !usuarioRepository.findByUsername("biblotecario1").isPresent() && !usuarioRepository.findByUsername("lector").isPresent()) {
+        if (usuarioRepository.count() == 0 && !usuarioRepository.findByUsername("bibliotecaria1").isPresent() && !usuarioRepository.findByUsername("lector").isPresent()) {
             Usuario usuario = new Usuario();
             usuario.setUsername("bibliotecaria1");
             usuario.setPassword(passwordEncoder.encode("password123"));
