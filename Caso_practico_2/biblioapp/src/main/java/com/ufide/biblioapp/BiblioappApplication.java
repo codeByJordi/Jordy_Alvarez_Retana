@@ -24,7 +24,7 @@ public class BiblioappApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if (usuarioRepository.count() == 0 && !usuarioRepository.findByUsername("biblotecario1").isPresent() && !usuarioRepository.findByUsername("lector").isPresent()) {
             Usuario usuario = new Usuario();
-            usuario.setUsername("biblotecario1");
+            usuario.setUsername("bibliotecaria1");
             usuario.setPassword(passwordEncoder.encode("password123"));
             usuario.setEmail("bibi@gmail.com");
             usuario.setRol("BIBLIOTECARIO");
