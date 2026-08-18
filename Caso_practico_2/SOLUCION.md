@@ -1,5 +1,8 @@
 La app crea bibliotecaria1 y lector con el commandliner, para tener el cuenta los usuarios que se crean en la base de datos, ya que los que traia en un inicio, no funcionaban y las contrasenas no eran las correspondientes. Entonces, ya app crea estos usuarios al iniciarse: bibliotecaria1 | password123 y lector | password123
 
+App deploy, pero el aiven usualmente se apaga, entonces no estoy seguro si al usarla, esta entre. Agregué imagenes de la app funcionando en la evidencia.
+https://caso2-jordy.onrender.com/ 
+
 - Cómo modelaste la relación `Prestamo → Libro` y por qué.
 
     @NotNull(message = "No puede ser null")
